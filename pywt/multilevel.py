@@ -40,7 +40,7 @@ def wavedec(data, wavelet, mode='sym', level=None):
     coeffs_list = []
 
     a = data
-    for i in xrange(level):
+    for i in range(level):
         a, d = dwt(a, wavelet, mode)
         coeffs_list.append(d)
     
@@ -104,7 +104,7 @@ def wavedec2(data, wavelet, mode='sym', level=None):
     coeffs_list = []
 
     a = data
-    for i in xrange(level):
+    for i in range(level):
         a, ds = dwt2(a, wavelet, mode)
         coeffs_list.append(ds)
     

@@ -21,7 +21,7 @@ def plot(data, w, title):
 	ca = []
 	cd = []
 	if DWT:
-		for i in xrange(5):
+		for i in range(5):
 			(a, d) = pywt.dwt(a, w, mode)
 			ca.append(a)
 			cd.append(d)

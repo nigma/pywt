@@ -18,8 +18,8 @@ for family, (rows,cols) in [('db', (4,3)), ('sym', (4,3)), ('coif', (3, 2))]:
     wnames = pywt.wavelist(family)
     print wnames
     i = iter(wnames)
-    for col in xrange(cols):
-        for row in xrange(rows):
+    for col in range(cols):
+        for row in range(rows):
             try:
                 wavelet = pywt.Wavelet(i.next())
             except StopIteration:
@@ -45,8 +45,8 @@ for family, (rows, cols) in [('bior', (4, 3)), ('rbio', (4, 3))]:
     colors = itertools.cycle('bgrcmyk')
     wnames = pywt.wavelist(family)
     i = iter(wnames)
-    for col in xrange(cols):
-        for row in xrange(rows):
+    for col in range(cols):
+        for row in range(rows):
             try:
                 wavelet = pywt.Wavelet(i.next())
             except StopIteration:

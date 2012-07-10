@@ -43,7 +43,7 @@ for j, size in enumerate(sizes):
     print ("%d/%d" % (j+1, len(sizes))).rjust(6), str(size).rjust(9),
     for i, w in enumerate(wavelets):
         min_t1, min_t2 = 9999., 9999.
-        for _ in xrange(repeat):
+        for _ in range(repeat):
             t1 = clock()
             (a,d) = pywt.dwt(data, w, mode)
             t1 = clock() - t1
