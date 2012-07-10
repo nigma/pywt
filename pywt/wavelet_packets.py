@@ -13,6 +13,12 @@ import numerix
 from _pywt import Wavelet, dwt, idwt, dwt_max_level
 from multidim import dwt2, idwt2
 
+try:
+    #noinspection PyCompatibility
+    basestring
+except NameError:
+    basestring = str # Python 3
+
 
 def get_graycode_order(level, x='a', y='d'):
     graycode_order = [x, y]

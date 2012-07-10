@@ -20,6 +20,12 @@ from numerix import integrate
 from numerix import argmax, mean
 from numerix import fft
 
+try:
+    #noinspection PyCompatibility
+    basestring
+except NameError:
+    basestring = str # Python 3
+
 WAVELET_CLASSES = (Wavelet)
 
 
