@@ -4,7 +4,7 @@
 import pylab
 import numpy
 import Image # PIL
-import pywt
+
 from pywt import WaveletPacket2D
 
 im = Image.open("data/aero.png").convert('L')
@@ -42,7 +42,7 @@ i = 1
 for row in wp2.get_level(2, 'freq'):
     for node in row:
         pylab.subplot(len(row),len(row),i)
-        pylab.title("%s=(%s row, %s col)" % ((node.path,)+ wp2.expand_2d_path(node.path)))
+        pylab.title("{0}=({1} row, {2} col)".format(node.path, *wp2.expand_2d_path(node.path)))
         pylab.imshow(mod(node.data), origin='image', interpolation="nearest", cmap=pylab.cm.gray)
         i += 1
 

@@ -1,3 +1,5 @@
+from __future__ import print_function
+
 import sys, os.path
 import pywt
 import pylab
@@ -11,13 +13,13 @@ try:
     except IndexError:
         level = 10
 except ValueError:
-    print "Unknown wavelet"
+    print("Unknown wavelet")
     raise SystemExit
 except IndexError:
-    print usage
+    print(usage)
     raise SystemExit
 
-print wavelet
+print(wavelet)
 
 data = wavelet.wavefun(level)
 funcs, x = data[:-1], data[-1]

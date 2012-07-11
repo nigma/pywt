@@ -38,6 +38,7 @@ detail coefficients:
                             (details only)
 """
 
+from __future__ import print_function
 import sys, optparse
 
 import Image # http://effbot.org/downloads/#PIL
@@ -168,10 +169,9 @@ def main():
     im = blend_images(base, texture, options.wavelet, options.level, options.mode, options.base_gain, options.texture_gain)
 
     if options.timeit:
-        print "%.3fs" % (clock() - t)
-    
+        print("{0:.3f}s".format(clock() - t))
+
     im.save(options.output)
 
 if __name__ == '__main__':
     main()
-

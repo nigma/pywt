@@ -4,27 +4,25 @@
 from __future__ import absolute_import
 
 import pywt
-import time
 import pylab
 
-#r = pywfdb.Record('d:/mitdb/101')
-#data = r.read(0, 5050, 1024)
-
-data1 = pylab.array(range(1,400) + range(398, 600) + range(601, 1024))/1024.
+data1 = pylab.array(list(range(1,400)) + list(range(398, 600)) + list(range(601, 1024)))/1024.
 data2 = pylab.arange(612-80, 20, -0.5)/250.
 data2 = pylab.sin(40*pylab.log(data2)) * pylab.sign((pylab.log(data2)))
-from .sample_data import ecg as data3
 
-mode = pywt.MODES.sp1
+from sample_data import ecg as data3
+
 DWT = 1
+
 def plot(data, w, title):
 	w = pywt.Wavelet(w)
 	a = data
 	ca = []
 	cd = []
+
 	if DWT:
 		for i in range(5):
-			(a, d) = pywt.dwt(a, w, mode)
+			(a, d) = pywt.dwt(a, w, "sp1")
 			ca.append(a)
 			cd.append(d)
 	else:
@@ -39,7 +37,6 @@ def plot(data, w, title):
 	pylab.xlim(0, len(data)-1)
 
 	for i, x in enumerate(ca):
-		#print len(data), len(x), len(data) / (2**(i+1))
 		lims = -(len(data) / (2.**(i+1)) - len(x)) / 2.
 		ax = pylab.subplot(len(ca)+1, 2, 3+i*2)
 		ax.plot(x, 'r')

@@ -3,6 +3,8 @@
 
 # Plot scaling and wavelet functions for db, sym, coif, bior and rbio families
 
+from __future__ import print_function
+
 import pywt
 import pylab
 import itertools
@@ -16,17 +18,17 @@ for family, (rows,cols) in [('db', (4,3)), ('sym', (4,3)), ('coif', (3, 2))]:
     colors = itertools.cycle('bgrcmyk')
     
     wnames = pywt.wavelist(family)
-    print wnames
+    print(wnames)
     i = iter(wnames)
     for col in range(cols):
         for row in range(rows):
             try:
-                wavelet = pywt.Wavelet(i.next())
+                wavelet = pywt.Wavelet(next(i))
             except StopIteration:
                 break
             phi, psi, x = wavelet.wavefun(iterations)
     
-            color = colors.next()
+            color = next(colors)
             ax = pylab.subplot(rows, 2*cols, 1 + 2*(col + row*cols))
             pylab.title(wavelet.name + " phi")
             pylab.plot(x, phi, color)
@@ -48,13 +50,13 @@ for family, (rows, cols) in [('bior', (4, 3)), ('rbio', (4, 3))]:
     for col in range(cols):
         for row in range(rows):
             try:
-                wavelet = pywt.Wavelet(i.next())
+                wavelet = pywt.Wavelet(next(i))
             except StopIteration:
                 break
             phi, psi, phi_r, psi_r, x = wavelet.wavefun(iterations)
             row *= 2
             
-            color = colors.next()
+            color = next(colors)
             ax = pylab.subplot(2*rows, 2*cols, 1 + 2*(col + row*cols))
             pylab.title(wavelet.name + " phi")
             pylab.plot(x, phi, color)
