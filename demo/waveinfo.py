@@ -8,12 +8,12 @@ try:
     wavelet = pywt.Wavelet(sys.argv[1])
     try:
         level = int(sys.argv[2])
-    except IndexError, e:
+    except IndexError:
         level = 10
-except ValueError, e:
+except ValueError:
     print "Unknown wavelet"
     raise SystemExit
-except IndexError, e:
+except IndexError:
     print usage
     raise SystemExit
 
