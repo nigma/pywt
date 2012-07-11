@@ -11,7 +11,10 @@ cdef extern from "common.h":
     cdef void* wtmalloc(long size)
     cdef void* wtcalloc(long len, long size)
     cdef void wtfree(void* ptr)
-    
+
+    cdef int PywtCapsule_Check(object p)
+    cdef void* PywtCapsule_AsVoidPtr(object cobj)
+
     ctypedef enum MODE:
         MODE_INVALID = -1
         MODE_ZEROPAD = 0

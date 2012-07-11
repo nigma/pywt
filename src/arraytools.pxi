@@ -48,8 +48,8 @@ cdef int array_object_as_float_buffer(object source, Buffer* buffer, char rwmode
 
     if hasattr(source, '__array_struct__'):
         cobject = source.__array_struct__
-        if c_python.PyCObject_Check(cobject):
-            array_struct = <c_array_interface.PyGenericArrayInterface*> c_python.PyCObject_AsVoidPtr(cobject)
+        if c_wt.PywtCapsule_Check(cobject):
+            array_struct = <c_array_interface.PyGenericArrayInterface*> c_wt.PywtCapsule_AsVoidPtr(cobject)
             if not (c_array_interface.PyArrayInterface_CHECK_1D(array_struct)):
                 raise ValueError("1D array expected.")
                 return -1

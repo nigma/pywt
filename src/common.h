@@ -24,6 +24,30 @@
     #define wtmalloc(size)      PyMem_Malloc(size)
     #define wtfree(ptr)         PyMem_Free(ptr)
     void *wtcalloc(size_t, size_t);
+
+    #if PY_VERSION_HEX >= 0x03000000
+        static int PywtCapsule_Check(PyObject *ptr)
+        {
+            return PyCapsule_CheckExact(ptr);
+        }
+        static void * PywtCapsule_AsVoidPtr(PyObject *obj)
+        {
+            void *ret = PyCapsule_GetPointer(obj, NULL);
+            if (ret == NULL) {
+                PyErr_Clear();
+            }
+            return ret;
+        }
+    #else
+        static int PywtCapsule_Check(PyObject *ptr)
+        {
+            return PyCObject_Check(ptr);
+        }
+        static void * PywtCapsule_AsVoidPtr(PyObject *ptr)
+        {
+            return PyCObject_AsVoidPtr(ptr);
+        }
+    #endif
 #else
     typedef int index_t; 
     // standard c memory management
