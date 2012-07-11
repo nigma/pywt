@@ -4,6 +4,8 @@
 Verify DWT perfect reconstruction.
 """
 
+from __future__ import print_function
+
 import math
 import numpy
 import pywt
@@ -24,10 +26,10 @@ def rms(ar1, ar2):
 def test_perfect_reconstruction(families, wavelets, modes, epsilon, dtype):
     for wavelet in wavelets:
         for pmode, mmode in modes:
-            print "Wavelet: %-8s Mode: %s" % (wavelet, pmode),
+            print("Wavelet: {0:<8s} Mode: {1}".format(wavelet, pmode), end="")
 
             w = pywt.Wavelet(wavelet)
-            data_size = range(2, 40) + [100, 200, 500, 1000, 2000, 10000, 50000, 100000]
+            data_size = list(range(2, 40)) + [100, 200, 500, 1000, 2000, 10000, 50000, 100000]
 
             ok, over = 0, 0
             for N in data_size:
@@ -45,13 +47,18 @@ def test_perfect_reconstruction(families, wavelets, modes, epsilon, dtype):
                 rms_rec = rms(data, rec)
                 if rms_rec > epsilon:
                     if not over:
-                        print
-                    print '[RMS_REC > EPSILON] for Mode: %s, Wavelet: %s, Length: %d, rms=%.3g' % (pmode, wavelet, len(data), rms_rec, )
+                        print()
+                    print(
+                        "[RMS_REC > EPSILON] for Mode: {0}, Wavelet: {1}," \
+                        " Length: {2}, rms={3:.3g}".format(
+                            pmode, wavelet, len(data), rms_rec)
+                    )
                     over += 1
                 else:
                     ok += 1
             if not over:
-                print "- RMSE for all %d cases was under %s" % (len(data_size), epsilon)
+                print ("- RMSE for all {0} cases was under {1:.3g}".format(
+                    len(data_size), epsilon))
 
 if __name__ == '__main__':
 
@@ -61,9 +68,10 @@ if __name__ == '__main__':
     modes = [('zpd', 'zpd'), ('cpd', 'sp0'), ('sym', 'sym'),
              ('ppd', 'ppd'), ('sp1', 'sp1'), ('per', 'per')]
 
-    print "Testing perfect reconstruction".upper()
+    print("Testing perfect reconstruction".upper())
     for dtype, name, epsilon in [(float32, "float32", 1.0e-7), (float64, "float64", 0.5e-10)][::-1]:
-        print "#"*80 + "\nPrecision: %s, max RMSE: %s\n" % (name, epsilon) + "#"*80 + "\n"
+        print("#" * 80)
+        print("Precision: {0}, max RMSE: {1:.3g}\n".format(name, epsilon))
+        print("#" * 80 + "\n")
         test_perfect_reconstruction(families, wavelets, modes, epsilon=epsilon, dtype=dtype)
-        print
-
+        print()
