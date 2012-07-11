@@ -70,8 +70,8 @@ computations can be performed with the `periodization`_ mode:
   .. sourcecode:: python
 
     >>> import pywt
-    >>> print pywt.MODES.modes
-    ['zpd', 'cpd', 'sym', 'ppd', 'sp1', 'per']
+    >>> print ", ".join(pywt.MODES.modes)
+    zpd, cpd, sym, ppd, sp1, per
 
 
 Notice that you can use any of the following ways of passing wavelet and mode

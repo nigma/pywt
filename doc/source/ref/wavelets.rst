@@ -28,8 +28,8 @@ Wavelet ``families()``
   .. sourcecode:: python
 
     >>> import pywt
-    >>> print pywt.families()
-    ['haar', 'db', 'sym', 'coif', 'bior', 'rbio', 'dmey']
+    >>> print ", ".join(pywt.families())
+    haar, db, sym, coif, bior, rbio, dmey
 
 
 Built-in wavelets - ``wavelist()``
@@ -49,8 +49,8 @@ Built-in wavelets - ``wavelist()``
   .. sourcecode:: python
 
     >>> import pywt
-    >>> print pywt.wavelist('coif')
-    ['coif1', 'coif2', 'coif3', 'coif4', 'coif5']
+    >>> print ", ".join(pywt.wavelist('coif'))
+    coif1, coif2, coif3, coif4, coif5
 
   Custom user wavelets are also supported through the :class:`Wavelet` object
   constructor as described below.

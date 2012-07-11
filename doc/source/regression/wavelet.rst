@@ -19,8 +19,8 @@ These wavelets are organized into groups called wavelet families. The most
 commonly used families are:
 
     >>> import pywt
-    >>> pywt.families()
-    ['haar', 'db', 'sym', 'coif', 'bior', 'rbio', 'dmey']
+    >>> print ", ".join(pywt.families())
+    haar, db, sym, coif, bior, rbio, dmey
 
 The :func:`wavelist` function with family name passed as an argument is used to
 obtain the list of wavelet names in each family.

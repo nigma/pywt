@@ -18,8 +18,8 @@ Import :mod:`pywt` first
 
 List of available signal extension :ref:`modes <MODES>`:
 
-    >>> print pywt.MODES.modes
-    ['zpd', 'cpd', 'sym', 'ppd', 'sp1', 'per']
+    >>> print ", ".join(pywt.MODES.modes)
+    zpd, cpd, sym, ppd, sp1, per
 
 
 Test that :func:`dwt` and :func:`idwt` can be performed using every mode:
@@ -114,7 +114,7 @@ Some invalid mode values:
     >>> pywt.dwt(x, 'db2', None)
     Traceback (most recent call last):
     ...
-    TypeError: expected string or Unicode object, NoneType found
+    ValueError: Invalid mode. Expected string or int, NoneType found.
 
 
 The default mode is :ref:`sym <MODES.sym>`:

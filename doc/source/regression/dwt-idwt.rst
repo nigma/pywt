@@ -72,8 +72,8 @@ extension mode (please refer to the PyWavelets' documentation for the
 :ref:`modes <modes>` description). Currently there are six
 :ref:`extension modes <MODES>` available:
 
-    >>> pywt.MODES.modes
-    ['zpd', 'cpd', 'sym', 'ppd', 'sp1', 'per']
+    >>> print ", ".join(pywt.MODES.modes)
+    zpd, cpd, sym, ppd, sp1, per
 
     >>> [int(pywt.dwt_coeff_len(len(x), w.dec_len, mode)) for mode in pywt.MODES.modes]
     [6, 6, 6, 6, 6, 4]
