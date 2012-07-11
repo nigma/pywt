@@ -39,7 +39,6 @@ include "arraytools.pxi"
 
 cdef c_wt.MODE c_mode_from_object(mode) except c_wt.MODE_INVALID:
     cdef c_wt.MODE m
-    cdef c_python.PyObject* co
     cdef object o
     if isinstance(mode, int):
         m = mode
@@ -47,13 +46,10 @@ cdef c_wt.MODE c_mode_from_object(mode) except c_wt.MODE_INVALID:
             raise ValueError("Invalid mode.")
             return c_wt.MODE_INVALID
     else:
-        co = c_python.PyObject_GetAttrString(MODES, mode)
-        if co is not NULL:
-            o = <object>co
-            c_python.Py_DECREF(o) # decref above extra ref inc
-            m = <object>co
+        attr = getattr(MODES, mode, None)
+        if attr is not None:
+            m = attr
         else:
-            c_python.PyErr_Clear()
             raise ValueError("Unknown mode name '%s'." % mode)
             return c_wt.MODE_INVALID
     return m
