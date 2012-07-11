@@ -39,8 +39,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'PyWavelets'
-copyright = jinja2.filters.do_mark_safe(u'2006-%s, <a href="http://filipwasilewski.pl/">Filip Wasilewski</a>' % datetime.date.today().year)
+project = 'PyWavelets'
+copyright = jinja2.filters.do_mark_safe('2006-%s, <a href="http://filipwasilewski.pl/">Filip Wasilewski</a>' % datetime.date.today().year)
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -174,8 +174,8 @@ htmlhelp_basename = 'PyWaveletsdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'PyWavelets.tex', u'PyWavelets Documentation',
-   u'Filip Wasilewski', 'manual'),
+  ('index', 'PyWavelets.tex', 'PyWavelets Documentation',
+   'Filip Wasilewski', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
