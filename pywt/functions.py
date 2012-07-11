@@ -9,16 +9,17 @@
 Other wavelet related functions.
 """
 
-__all__ = ["intwave", "centfrq", "scal2frq", "qmf", "orthfilt"]
+from __future__ import absolute_import
 
 from math import sqrt
 
-from _pywt import Wavelet
+from ._pywt import Wavelet
+from .numerix import asarray, array, float64
+from .numerix import integrate
+from .numerix import argmax, mean
+from .numerix import fft
 
-from numerix import asarray, array, float64
-from numerix import integrate
-from numerix import argmax, mean
-from numerix import fft
+__all__ = ["intwave", "centfrq", "scal2frq", "qmf", "orthfilt"]
 
 try:
     #noinspection PyCompatibility

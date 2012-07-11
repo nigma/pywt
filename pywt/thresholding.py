@@ -7,9 +7,12 @@
 
 """Thresholding routines"""
 
+from __future__ import absolute_import
+
+from . import numerix
+
 __all__ = ['soft', 'hard', 'greater', 'less', 'zero', 'copy']
 
-import numerix
 
 def soft(data, value, substitute=0):
     mvalue = -value

@@ -23,11 +23,11 @@ import warnings
 
 cdef object as_float_array, contiguous_float64_array_from_any, \
             float32_memory_buffer_object, float64_memory_buffer_object
-from numerix import as_float_array, contiguous_float64_array_from_any, \
+from pywt.numerix import as_float_array, contiguous_float64_array_from_any, \
                     float32_memory_buffer_object, float64_memory_buffer_object
 
 cdef object concatenate, zeros, linspace, keep
-from numerix import concatenate, zeros, linspace, keep
+from pywt.numerix import concatenate, zeros, linspace, keep
 
 ###############################################################################
 # array handling stuff here

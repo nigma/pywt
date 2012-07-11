@@ -10,12 +10,15 @@ Multilevel 1D and 2D Discrete Wavelet Transform
 and Inverse Discrete Wavelet Transform.
 """
 
+from __future__ import absolute_import
+
+from ._pywt import Wavelet, MODES
+from ._pywt import dwt, idwt, dwt_max_level
+from .multidim import dwt2, idwt2
+from .numerix import as_float_array
+
 __all__ = ['wavedec', 'waverec', 'wavedec2', 'waverec2']
 
-from _pywt import Wavelet, MODES
-from _pywt import dwt, idwt, dwt_max_level
-from multidim import dwt2, idwt2
-from numerix import as_float_array
 
 def wavedec(data, wavelet, mode='sym', level=None):
     """

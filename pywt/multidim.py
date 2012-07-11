@@ -9,13 +9,15 @@
 2D Discrete Wavelet Transform and Inverse Discrete Wavelet Transform.
 """
 
-__all__ = ['dwt2', 'idwt2', 'swt2', 'dwtn']
+from __future__ import absolute_import
 
 from itertools import izip, cycle
 
-from _pywt import Wavelet, MODES
-from _pywt import dwt, idwt, swt, downcoef
-from numerix import transpose, array, as_float_array, default_dtype, apply_along_axis
+from ._pywt import Wavelet, MODES
+from ._pywt import dwt, idwt, swt, downcoef
+from .numerix import transpose, array, as_float_array, default_dtype, apply_along_axis
+
+__all__ = ['dwt2', 'idwt2', 'swt2', 'dwtn']
 
 
 def dwt2(data, wavelet, mode='sym'):
