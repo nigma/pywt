@@ -8,6 +8,8 @@
 # to keep the code easier to maintain.
 # PS. For internal use only ;)
 
+from __future__ import print_function
+import os
 import re # sounds fun, doesn't it?
 
 pattern_for = re.compile(r"""(?P<for>
@@ -91,7 +93,7 @@ def expand_template(s):
 def expand_files(glob_pattern, force_update=False):
     import glob
     from os.path import splitext, exists, getmtime, basename, dirname, join, extsep
-    files = glob.glob(glob_pattern)
+    files = glob.glob(os.path.abspath(glob_pattern))
 
     for name in files:
         directory = dirname(name)
@@ -101,8 +103,8 @@ def expand_files(glob_pattern, force_update=False):
             new_name = splitext(new_name)[0]
         new_name = join(directory, new_name + ext)
         if not exists(new_name) or force_update or getmtime(new_name) < getmtime(name):
-            print "expanding template: %s -> %s" % (name, new_name)
-            content = expand_template(open(name, "rb").read())
+            print("expanding template '{0}' -> '{1}'".format(name, new_name))
+            content = expand_template(open(name, "rb").read().decode("utf-8"))
             new_file = open(new_name, "wb")
-            new_file.write(content)
+            new_file.write(content.encode("utf-8"))
             new_file.close()
