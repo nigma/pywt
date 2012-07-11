@@ -11,7 +11,11 @@
 
 from __future__ import absolute_import
 
-from itertools import izip, cycle
+from itertools import cycle
+try:
+    from itertools import izip
+except ImportError:
+    izip = zip
 
 from ._pywt import Wavelet, MODES
 from ._pywt import dwt, idwt, swt, downcoef
