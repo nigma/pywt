@@ -3,6 +3,8 @@
 
 # $Id$
 
+from __future__ import unicode_literals
+
 __id__ = "$Id$"
 __doc__ = """Pyrex wrapper for low-level C wavelet transform implementation."""
 __all__ = ['MODES', 'Wavelet', 'dwt', 'dwt_coeff_len', 'dwt_max_level',
@@ -37,7 +39,7 @@ include "arraytools.pxi"
 ###############################################################################
 # MODES
 
-cdef c_wt.MODE c_mode_from_object(mode) except c_wt.MODE_INVALID:
+cdef c_wt.MODE c_mode_from_object(object mode) except c_wt.MODE_INVALID:
     cdef c_wt.MODE m
     cdef object o
     if isinstance(mode, int):
@@ -45,13 +47,16 @@ cdef c_wt.MODE c_mode_from_object(mode) except c_wt.MODE_INVALID:
         if m <= c_wt.MODE_INVALID or m >= c_wt.MODE_MAX:
             raise ValueError("Invalid mode.")
             return c_wt.MODE_INVALID
-    else:
+    elif isinstance(mode, (str, unicode)):
         attr = getattr(MODES, mode, None)
         if attr is not None:
             m = attr
         else:
             raise ValueError("Unknown mode name '%s'." % mode)
             return c_wt.MODE_INVALID
+    else:
+        raise ValueError("Invalid mode. Expected string or int, %s found." % type(mode).__name__)
+        return c_wt.MODE_INVALID
     return m
 
 def __from_object(mode):
@@ -96,8 +101,10 @@ class MODES(object):
 
 include "wavelets_list.pxi" ## __wname_to_code
 
-cdef object wname_to_code(char* name):
+cdef object wname_to_code(object name):
     cdef object code_number
+    if not isinstance(name, (str, unicode)):
+        raise ValueError("Invalid mode. Expected string, %s found." % type(name).__name__)
     try:
         code_number = __wname_to_code[name]
         assert len(code_number) == 2
@@ -160,7 +167,7 @@ cdef public class Wavelet [type WaveletType, object WaveletObject]:
 
     #cdef readonly properties
 
-    def __cinit__(self, char* name="", object filter_bank=None):
+    def __cinit__(self, object name=None, object filter_bank=None):
         cdef object family_code, family_number
         cdef object filters
         cdef index_t filter_length
@@ -268,12 +275,12 @@ cdef public class Wavelet [type WaveletType, object WaveletObject]:
     property family_name:
         "Wavelet family name"
         def __get__(self):
-            return self.w.family_name
+            return self.w.family_name.decode("utf-8")
 
     property short_family_name:
         "Short wavelet family name"
         def __get__(self):
-            return self.w.short_name
+            return self.w.short_name.decode("utf-8")
 
     property orthogonal:
         "Is orthogonal"
@@ -413,16 +420,16 @@ cdef public class Wavelet [type WaveletType, object WaveletObject]:
     def __str__(self):
         s = []
         for x in [
-            u"Wavelet %s" % self.name,
-            u"  Family name:    %s" % self.family_name,
-            u"  Short name:     %s" % self.short_family_name,
-            u"  Filters length: %d" % self.dec_len,
-            u"  Orthogonal:     %s" % self.orthogonal,
-            u"  Biorthogonal:   %s" % self.biorthogonal,
-            u"  Symmetry:       %s" % self.symmetry
+            "Wavelet %s" % self.name,
+            "  Family name:    %s" % self.family_name,
+            "  Short name:     %s" % self.short_family_name,
+            "  Filters length: %d" % self.dec_len,
+            "  Orthogonal:     %s" % self.orthogonal,
+            "  Biorthogonal:   %s" % self.biorthogonal,
+            "  Symmetry:       %s" % self.symmetry
         ]:
             s.append(x.rstrip())
-        return u'\n'.join(s)
+        return "\n".join(s)
 
 
 cdef index_t get_keep_length(index_t output_length, int level, index_t filter_length):
