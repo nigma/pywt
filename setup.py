@@ -2,7 +2,13 @@
 #-*- coding: utf-8 -*-
 
 import os, sys
-from distutils.core import setup, Extension
+
+try:
+    from setuptools import setup, Extension
+    has_setuptools = True
+except ImportError:
+    from distutils.core import setup, Extension
+    has_setuptools = False
 
 from util import commands
 
@@ -27,6 +33,13 @@ cmdclass={
     "sdist": commands.SdistCommand,
     "clean_build": commands.CleanCommand,
 }
+
+setup_args = {}
+if has_setuptools:
+    setup_args["zip_safe"] = False
+    setup_args["test_suite"] = "tests.test_doc.suite"
+else:
+    cmdclass["test"] = commands.TestCommand
 
 setup(
     name="PyWavelets",
@@ -64,5 +77,5 @@ setup(
     packages=packages,
     package_dir=package_dir,
     cmdclass=cmdclass,
-    zip_safe=False,
+    **setup_args
 )
