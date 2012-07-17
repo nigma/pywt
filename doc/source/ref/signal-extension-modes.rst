@@ -69,7 +69,7 @@ computations can be performed with the `periodization`_ mode:
   .. sourcecode:: python
 
     >>> import pywt
-    >>> print ", ".join(pywt.MODES.modes)
+    >>> print(", ".join(pywt.MODES.modes))
     zpd, cpd, sym, ppd, sp1, per
 
 
@@ -89,3 +89,4 @@ parameters:
     This feature saves extra memory and CPU resources and helps to avoid page
     swapping when handling relatively big data arrays on computers with low
     physical memory.
+

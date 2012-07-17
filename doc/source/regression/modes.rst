@@ -18,7 +18,7 @@ Import :mod:`pywt` first
 
 List of available signal extension :ref:`modes <MODES>`:
 
-    >>> print ", ".join(pywt.MODES.modes)
+    >>> print(", ".join(pywt.MODES.modes))
     zpd, cpd, sym, ppd, sp1, per
 
 
@@ -27,10 +27,10 @@ Test that :func:`dwt` and :func:`idwt` can be performed using every mode:
     >>> x = [1,2,1,5,-1,8,4,6]
     >>> for mode in pywt.MODES.modes:
     ...     cA, cD = pywt.dwt(x, 'db2', mode)
-    ...     print "Mode:", mode
-    ...     print "cA:", format_array(cA)
-    ...     print "cD:", format_array(cD)
-    ...     print "Reconstruction:", pywt.idwt(cA, cD, 'db2', mode)
+    ...     print("Mode:", mode)
+    ...     print("cA:", format_array(cA))
+    ...     print("cD:", format_array(cD))
+    ...     print("Reconstruction:", pywt.idwt(cA, cD, 'db2', mode))
     Mode: zpd
     cA: [-0.03468  1.73309  3.40612  6.32929  6.95095]
     cD: [-0.12941 -2.156   -5.95035 -1.21545 -1.8625 ]
@@ -70,10 +70,10 @@ You can also refer to modes via :ref:`MODES <MODES>` class attributes:
     >>> for mode_name in ['zpd', 'cpd', 'sym', 'ppd', 'sp1', 'per']:
     ...     mode = getattr(pywt.MODES, mode_name)
     ...     cA, cD = pywt.dwt([1,2,1,5,-1,8,4,6], 'db2', mode)
-    ...     print "Mode:", mode, "(%s)" % mode_name
-    ...     print "cA:", format_array(cA)
-    ...     print "cD:", format_array(cD)
-    ...     print "Reconstruction:", pywt.idwt(cA, cD, 'db2', mode)
+    ...     print("Mode:", mode, "(%s)" % mode_name)
+    ...     print("cA:", format_array(cA))
+    ...     print("cD:", format_array(cD))
+    ...     print("Reconstruction:", pywt.idwt(cA, cD, 'db2', mode))
     Mode: 0 (zpd)
     cA: [-0.03468  1.73309  3.40612  6.32929  6.95095]
     cD: [-0.12941 -2.156   -5.95035 -1.21545 -1.8625 ]
@@ -120,20 +120,21 @@ Some invalid mode values:
 The default mode is :ref:`sym <MODES.sym>`:
 
     >>> cA, cD = pywt.dwt(x, 'db2')
-    >>> print cA
+    >>> print(cA)
     [ 1.76776695  1.73309178  3.40612438  6.32928585  7.77817459]
-    >>> print cD
+    >>> print(cD)
     [-0.61237244 -2.15599552 -5.95034847 -1.21545369  1.22474487]
-    >>> print pywt.idwt(cA, cD, 'db2')
+    >>> print(pywt.idwt(cA, cD, 'db2'))
     [ 1.  2.  1.  5. -1.  8.  4.  6.]
 
 
 And using a keyword argument:
 
     >>> cA, cD = pywt.dwt(x, 'db2', mode='sym')
-    >>> print cA
+    >>> print(cA)
     [ 1.76776695  1.73309178  3.40612438  6.32928585  7.77817459]
-    >>> print cD
+    >>> print(cD)
     [-0.61237244 -2.15599552 -5.95034847 -1.21545369  1.22474487]
-    >>> print pywt.idwt(cA, cD, 'db2')
+    >>> print(pywt.idwt(cA, cD, 'db2'))
     [ 1.  2.  1.  5. -1.  8.  4.  6.]
+

@@ -60,10 +60,10 @@ access to particular type of the output coefficients.
     >>> data = numpy.ones((4,4), dtype=numpy.float64)
     >>> coeffs = pywt.dwt2(data, 'haar')
     >>> cA, (cH, cV, cD) = coeffs
-    >>> print cA
+    >>> print(cA)
     [[ 2.  2.]
      [ 2.  2.]]
-    >>> print cV
+    >>> print(cV)
     [[ 0.  0.]
      [ 0.  0.]]
 
@@ -93,7 +93,7 @@ Single level ``idwt2``
     >>> import pywt, numpy
     >>> data = numpy.array([[1,2], [3,4]], dtype=numpy.float64)
     >>> coeffs = pywt.dwt2(data, 'haar')
-    >>> print pywt.idwt2(coeffs, 'haar')
+    >>> print(pywt.idwt2(coeffs, 'haar'))
     [[ 1.  2.]
      [ 3.  4.]]
 
@@ -131,7 +131,7 @@ Single level ``idwt2``
     >>> import pywt, numpy
     >>> coeffs = pywt.wavedec2(numpy.ones((8,8)), 'db1', level=2)
     >>> cA2, (cH2, cV2, cD2), (cH1, cV1, cD1) = coeffs
-    >>> print cA2
+    >>> print(cA2)
     [[ 4.  4.]
      [ 4.  4.]]
 
@@ -158,10 +158,11 @@ Single level ``idwt2``
 
     >>> import pywt, numpy
     >>> coeffs = pywt.wavedec2(numpy.ones((4,4)), 'db1')
-    >>> print "levels:", len(coeffs)-1
+    >>> print("levels:", len(coeffs)-1)
     levels: 2
-    >>> print pywt.waverec2(coeffs, 'db1')
+    >>> print(pywt.waverec2(coeffs, 'db1'))
     [[ 1.  1.  1.  1.]
      [ 1.  1.  1.  1.]
      [ 1.  1.  1.  1.]
      [ 1.  1.  1.  1.]]
+

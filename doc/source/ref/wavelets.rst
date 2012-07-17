@@ -27,7 +27,7 @@ Wavelet ``families()``
   .. sourcecode:: python
 
     >>> import pywt
-    >>> print ", ".join(pywt.families())
+    >>> print(", ".join(pywt.families()))
     haar, db, sym, coif, bior, rbio, dmey
 
 
@@ -48,7 +48,7 @@ Built-in wavelets - ``wavelist()``
   .. sourcecode:: python
 
     >>> import pywt
-    >>> print ", ".join(pywt.wavelist('coif'))
+    >>> print(", ".join(pywt.wavelist('coif')))
     coif1, coif2, coif3, coif4, coif5
 
   Custom user wavelets are also supported through the :class:`Wavelet` object
@@ -168,7 +168,7 @@ Built-in wavelets - ``wavelist()``
 
     >>> import pywt
     >>> wavelet = pywt.Wavelet('db1')
-    >>> print wavelet
+    >>> print(wavelet)
     Wavelet db1
       Family name:    Daubechies
       Short name:     db
@@ -176,9 +176,9 @@ Built-in wavelets - ``wavelist()``
       Orthogonal:     True
       Biorthogonal:   True
       Symmetry:       asymmetric
-    >>> print format_array(wavelet.dec_lo), format_array(wavelet.dec_hi)
+    >>> print(format_array(wavelet.dec_lo), format_array(wavelet.dec_hi))
     [0.70710678118655, 0.70710678118655] [-0.70710678118655, 0.70710678118655]
-    >>> print format_array(wavelet.rec_lo), format_array(wavelet.rec_hi)
+    >>> print(format_array(wavelet.rec_lo), format_array(wavelet.rec_hi))
     [0.70710678118655, 0.70710678118655] [0.70710678118655, -0.70710678118655]
 
 
@@ -281,3 +281,4 @@ from plain Python lists of filter coefficients and a *filter bank-like* objects.
     ...         return [dec_lo, dec_hi, rec_lo, rec_hi]
     >>> filter_bank = HaarFilterBank()
     >>> myOtherWavelet = pywt.Wavelet(name="myHaarWavelet", filter_bank=filter_bank)
+

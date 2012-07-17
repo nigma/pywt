@@ -41,7 +41,7 @@ Single level ``idwt``
 
     >>> import pywt
     >>> (cA, cD) = pywt.dwt([1,2,3,4,5,6], 'db2', 'sp1')
-    >>> print pywt.idwt(cA, cD, 'db2', 'sp1')
+    >>> print(pywt.idwt(cA, cD, 'db2', 'sp1'))
     [ 1.  2.  3.  4.  5.  6.]
 
   One of the neat features of :func:`idwt` is that one of the *cA* and *cD*
@@ -57,7 +57,7 @@ Single level ``idwt``
     >>> (cA, cD) = pywt.dwt([1,2,3,4,5,6], 'db2', 'sp1')
     >>> A = pywt.idwt(cA, None, 'db2', 'sp1')
     >>> D = pywt.idwt(None, cD, 'db2', 'sp1')
-    >>> print A + D
+    >>> print(A + D)
     [ 1.  2.  3.  4.  5.  6.]
 
 
@@ -84,7 +84,7 @@ Multilevel reconstruction using ``waverec``
 
     >>> import pywt
     >>> coeffs = pywt.wavedec([1,2,3,4,5,6,7,8], 'db2', level=2)
-    >>> print pywt.waverec(coeffs, 'db2')
+    >>> print(pywt.waverec(coeffs, 'db2'))
     [ 1.  2.  3.  4.  5.  6.  7.  8.]
 
 
@@ -118,9 +118,10 @@ Direct reconstruction with ``upcoef``
     >>> import pywt
     >>> data = [1,2,3,4,5,6]
     >>> (cA, cD) = pywt.dwt(data, 'db2', 'sp1')
-    >>> print pywt.upcoef('a', cA, 'db2') + pywt.upcoef('d', cD, 'db2')
+    >>> print(pywt.upcoef('a', cA, 'db2') + pywt.upcoef('d', cD, 'db2'))
     [-0.25       -0.4330127   1.          2.          3.          4.          5.
       6.          1.78589838 -1.03108891]
     >>> n = len(data)
-    >>> print pywt.upcoef('a',cA,'db2',take=n) + pywt.upcoef('d',cD,'db2',take=n)
+    >>> print(pywt.upcoef('a',cA,'db2',take=n) + pywt.upcoef('d',cD,'db2',take=n))
     [ 1.  2.  3.  4.  5.  6.]
+

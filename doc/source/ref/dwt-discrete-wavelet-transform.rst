@@ -51,9 +51,9 @@ Single level ``dwt``
 
     >>> import pywt
     >>> (cA, cD) = pywt.dwt([1,2,3,4,5,6], 'db1')
-    >>> print cA
+    >>> print(cA)
     [ 2.12132034  4.94974747  7.77817459]
-    >>> print cD
+    >>> print(cD)
     [-0.70710678 -0.70710678 -0.70710678]
 
 
@@ -94,11 +94,11 @@ Multilevel decomposition using ``wavedec``
     >>> import pywt
     >>> coeffs = pywt.wavedec([1,2,3,4,5,6,7,8], 'db1', level=2)
     >>> cA2, cD2, cD1 = coeffs
-    >>> print cD1
+    >>> print(cD1)
     [-0.70710678 -0.70710678 -0.70710678 -0.70710678]
-    >>> print cD2
+    >>> print(cD2)
     [-2. -2.]
-    >>> print cA2
+    >>> print(cA2)
     [  5.  13.]
 
 
@@ -148,9 +148,9 @@ Maximum decomposition level - ``dwt_max_level``
 
     >>> import pywt
     >>> w = pywt.Wavelet('sym5')
-    >>> print pywt.dwt_max_level(data_len=1000, filter_len=w.dec_len)
+    >>> print(pywt.dwt_max_level(data_len=1000, filter_len=w.dec_len))
     6
-    >>> print pywt.dwt_max_level(1000, w)
+    >>> print(pywt.dwt_max_level(1000, w))
     6
 
 .. _`dwt_coeff_len`:
@@ -178,3 +178,4 @@ For other :ref:`modes <ref-modes>`::
 
 The *filter_len* can be either an *int* or :class:`Wavelet` object for
 convenience.
+
