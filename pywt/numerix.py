@@ -11,6 +11,8 @@ Thin wrapper for numeric modules. Modify this to use wavelets with libraries oth
 Provides efficient mathematical functions and array datatypes.
 """
 
+from __future__ import division
+
 from numpy import ndarray, array, asarray
 from numpy import empty, zeros, linspace, arange
 from numpy import intp, float64, float32
@@ -50,7 +52,7 @@ def is_array_type(arr, typ):
 def keep(arr, keep_length):
     length = len(arr)
     if keep_length < length:
-        left_bound = (length - keep_length) / 2
+        left_bound = (length - keep_length) // 2
         return arr[left_bound:left_bound+keep_length]
     return arr
 

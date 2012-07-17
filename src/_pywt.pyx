@@ -4,6 +4,7 @@
 # $Id$
 
 from __future__ import unicode_literals
+from __future__ import division
 
 __id__ = "$Id$"
 __doc__ = """Pyrex wrapper for low-level C wavelet transform implementation."""
@@ -750,8 +751,8 @@ def upcoef(part, coeffs, wavelet, int level=1, take=0):
 
     if take > 0:
         if take < rec_len:
-            left_bound = right_bound = (rec_len-take)/2
-            if (rec_len-take)%2:
+            left_bound = right_bound = (rec_len-take) // 2
+            if (rec_len-take) % 2:
                 left_bound = left_bound + 1
 
             return rec[left_bound:-right_bound]

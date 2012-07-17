@@ -10,6 +10,7 @@ Other wavelet related functions.
 """
 
 from __future__ import absolute_import
+from __future__ import division
 
 from math import sqrt
 
@@ -117,11 +118,11 @@ def centfrq(wavelet, precision=8):
     domain = float(x[-1] - x[0])
     assert domain > 0
 
-    index = argmax(abs(fft(psi)[1:]))+2
-    if index > len(psi)/2:
-        index = len(psi)-index+2
+    index = argmax(abs(fft(psi)[1:])) + 2
+    if index > len(psi) // 2:
+        index = len(psi) - index + 2
 
-    return 1.0/(domain/(index-1))
+    return 1.0 / (domain / (index-1))
 
 
 def scal2frq(wavelet, scale, delta, precision=8):
@@ -133,7 +134,7 @@ def scal2frq(wavelet, scale, delta, precision=8):
     scale
     delta   - sampling
     """
-    return centfrq(wavelet, precision=precision)/(scale*delta)
+    return centfrq(wavelet, precision=precision) / (scale*delta)
 
 
 def qmf(filter):
