@@ -46,7 +46,7 @@ else:
 
 setup(
     name="PyWavelets",
-    version="0.2.2",
+    version="0.2.2.post1",
     author="Filip Wasilewski",
     author_email="en@ig.ma",
     url="http://www.pybytes.com/pywavelets/",
