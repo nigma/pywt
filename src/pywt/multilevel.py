@@ -8,10 +8,10 @@ Multilevel 1D and 2D Discrete Wavelet Transform
 and Inverse Discrete Wavelet Transform.
 """
 
-__all__ = ['wavedec', 'waverec', 'wavedec2', 'waverec2']
+__all__ = ['wavedec', 'waverec', 'wavedec_coeff_len', 'wavedec2', 'waverec2']
 
 from _pywt import Wavelet
-from _pywt import dwt, idwt, dwt_max_level
+from _pywt import dwt, idwt, dwt_max_level, dwt_coeff_len
 from multidim import dwt2, idwt2
 from numerix import as_float_array
 
@@ -48,6 +48,32 @@ def wavedec(data, wavelet, mode='sym', level=None):
     coeffs_list.reverse()
 
     return coeffs_list
+
+def wavedec_coeff_len(data_len, filter_len, mode, level=None):
+    """
+    Total number of coefficients in the output of `wavedec`, given data
+    length, filter length, mode and level.
+    Returns integer: len(cAn) + len(cDn) + len(cDn-1) + ... + len(cD1)
+
+    data_len   - data length
+    filter_len - filter length or Wavelet instance
+    level      - decomposition level. If level is None then it will be
+                 calculated using `dwt_max_level` function.
+
+    """
+
+    if level is None:
+        level = dwt_max_level(data_len, filter_len)
+    elif level < 0:
+        raise ValueError(
+            "Level value of %d is too low . Minimum level is 0." % level)
+    total_len = 0
+
+    for i in xrange(level):
+        data_len = dwt_coeff_len(data_len, filter_len, mode)
+        total_len += data_len 
+
+    return total_len + data_len
 
 
 def waverec(coeffs, wavelet, mode='sym'):
