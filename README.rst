@@ -1,3 +1,14 @@
+Important
+=========
+
+**We're moving! The new home for the project is https://github.com/PyWavelets.**
+
+Thanks everyone for starring, forking and following this repository on Github.
+
+The PyWavelets project has a new home and maintainers.
+
+Please go to https://github.com/PyWavelets/pywt and follow the development and new releases there.
+
 PyWavelets - Discrete Wavelet Transform in Python
 =================================================
 
