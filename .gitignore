@@ -1,17 +1,12 @@
 *.py[co]
 *.pyd
+*.so
 
 # Packages
 *.egg
 *.egg-info
 dist
 build
-eggs
-parts
-bin
-var
-sdist
-develop-eggs
 .installed.cfg
 
 # Installer logs
@@ -21,11 +16,11 @@ pip-log.txt
 .coverage
 .tox
 
-# Translations
-*.mo
-
 # Editors
 .idea
+.project
+.pydevproject
+.settings
 
 # Project working files
 _pywt.[ch]
@@ -34,3 +29,6 @@ convolution.[ch]
 wavelets.[ch]
 wavelets_coeffs.h
 wt.[ch]
+cythonize.dat
+pywt/__config__.py
+pywt/version.py
